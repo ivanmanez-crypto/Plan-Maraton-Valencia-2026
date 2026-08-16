@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan Maratón Valencia 2026 · 3:14:00</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#10141a;
+  --panel:#171d25;
+  --panel-2:#1d2530;
+  --border:#26303c;
+  --text:#e9edf2;
+  --muted:#8b96a5;
+  --muted-2:#5d6774;
+  --teal:#35d0c0;
+  --teal-dim:rgba(53,208,192,.14);
+  --gold:#e8b23d;
+  --gold-dim:rgba(232,178,61,.14);
+
+  --c-adapt:#6b9bd1;
+  --c-base:#5fb88f;
+  --c-descarga:#7c8797;
+  --c-construccion:#e0a83d;
+  --c-especifica:#db6b3d;
+  --c-pico:#c2453b;
+  --c-pretaper:#b5739e;
+  --c-taper:#8172c9;
+  --c-carrera:#e8b23d;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:
+    radial-gradient(1200px 600px at 15% -10%, rgba(53,208,192,.08), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(232,178,61,.06), transparent 55%),
+    var(--bg);
+  color:var(--text);
+  font-family:'Inter',system-ui,sans-serif;
+  min-height:100vh;
+  padding-bottom:60px;
+}
+.mono{font-family:'IBM Plex Mono',monospace;}
+.display{font-family:'Bebas Neue',sans-serif; letter-spacing:.02em;}
+
+/* ---------- layout ---------- */
+.wrap{max-width:1180px; margin:0 auto; padding:0 22px;}
+
+/* ---------- header ---------- */
+header.hero{
+  border-bottom:1px solid var(--border);
+  padding:34px 0 26px;
+  position:relative;
+  overflow:hidden;
+}
+.hero-top{display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap;}
+.eyebrow{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--teal);
+  display:flex; align-items:center; gap:8px;
+  margin-bottom:10px;
+}
+.eyebrow .dot{width:6px; height:6px; border-radius:50%; background:var(--teal); box-shadow:0 0 10px var(--teal); animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1} 50%{opacity:.35}}
+h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(38px,6vw,64px);
+  line-height:.95;
+  letter-spacing:.01em;
+  color:#fff;
+}
+h1 span{color:var(--gold);}
+.hero-sub{color:var(--muted); font-size:15px; margin-top:10px; max-width:520px;}
+.hero-target{
+  text-align:right;
+  border:1px solid var(--border);
+  background:var(--panel);
+  border-radius:14px;
+  padding:16px 22px;
+  min-width:200px;
+}
+.hero-target .lbl{font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted-2); margin-bottom:4px;}
+.hero-target .val{font-family:'Bebas Neue'; font-size:44px; color:var(--gold); line-height:1;}
+.hero-target .sub{font-size:12px; color:var(--muted); margin-top:4px; font-family:'IBM Plex Mono',monospace;}
+
+.countdown-row{
+  display:flex; gap:10px; margin-top:22px; flex-wrap:wrap;
+}
+.cbox{
+  background:var(--panel); border:1px solid var(--border); border-radius:12px;
+  padding:10px 16px; min-width:78px; text-align:center;
+}
+.cbox .n{font-family:'Bebas Neue'; font-size:26px; color:var(--text);}
+.cbox .l{font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted-2); margin-top:2px;}
+
+/* ---------- progress track (signature element) ---------- */
+.track-wrap{margin-top:26px;}
+.track-lbl-row{display:flex; justify-content:space-between; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted-2); margin-bottom:6px;}
+.track{
+  position:relative; height:10px; border-radius:6px; background:var(--panel-2); border:1px solid var(--border); overflow:visible;
+}
+.track-fill{
+  position:absolute; left:0; top:0; height:100%; border-radius:6px;
+  background:linear-gradient(90deg, var(--teal), var(--gold));
+}
+.track-runner{
+  position:absolute; top:50%; transform:translate(-50%,-50%);
+  font-size:18px;
+}
+
+/* ---------- KPI grid ---------- */
+.kpi-grid{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:30px;
+}
+@media(max-width:800px){.kpi-grid{grid-template-columns:repeat(2,1fr);}}
+.kpi{
+  background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:16px 18px;
+  position:relative; overflow:hidden;
+}
+.kpi::before{
+  content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--teal);
+}
+.kpi.gold::before{background:var(--gold);}
+.kpi .k-lbl{font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted-2);}
+.kpi .k-val{font-family:'Bebas Neue'; font-size:32px; color:#fff; margin-top:4px;}
+.kpi .k-sub{font-size:12px; color:var(--muted); margin-top:2px;}
+
+/* ---------- section titles ---------- */
+section{padding-top:44px;}
+.sec-head{display:flex; align-items:baseline; justify-content:space-between; gap:14px; margin-bottom:16px; flex-wrap:wrap;}
+.sec-title{font-family:'Bebas Neue'; font-size:26px; letter-spacing:.02em; color:#fff; display:flex; align-items:center; gap:10px;}
+.sec-title .num{color:var(--teal); font-family:'IBM Plex Mono',monospace; font-size:13px; border:1px solid var(--border); border-radius:6px; padding:2px 7px;}
+.sec-note{font-size:12.5px; color:var(--muted);}
+
+/* ---------- weekly chart ---------- */
+.chart-panel{
+  background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:20px 18px 8px;
+}
+.legend{display:flex; flex-wrap:wrap; gap:10px 16px; margin-bottom:14px; font-size:11.5px; color:var(--muted);}
+.legend .li{display:flex; align-items:center; gap:6px;}
+.legend .sw{width:10px; height:10px; border-radius:3px;}
+#chartSvg{width:100%; height:auto; display:block;}
+.bar{transition:opacity .15s;}
+.bar:hover{opacity:.75; cursor:pointer;}
+.chart-tip{
+  position:absolute; pointer-events:none; background:#0c1014; border:1px solid var(--border);
+  border-radius:10px; padding:10px 12px; font-size:12px; color:var(--text); opacity:0; transition:opacity .1s;
+  box-shadow:0 10px 30px rgba(0,0,0,.5); z-index:50; min-width:170px;
+}
+.chart-tip b{color:var(--gold); font-family:'IBM Plex Mono',monospace;}
+.chart-container{position:relative;}
+
+/* ---------- pace zones ---------- */
+.zones-panel{
+  background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:22px 20px;
+}
+.zone-row{
+  display:grid; grid-template-columns:64px 150px 1fr 128px; align-items:center; gap:14px;
+  padding:11px 0; border-bottom:1px solid var(--border);
+}
+.zone-row:last-child{border-bottom:none;}
+.zone-tag{
+  font-family:'Bebas Neue'; font-size:20px; text-align:center; padding:5px 0; border-radius:8px;
+  color:#0c1014;
+}
+.zone-use{font-size:13px; color:var(--text); font-weight:500;}
+.zone-use small{display:block; color:var(--muted-2); font-size:11px; font-weight:400; margin-top:1px;}
+.zone-scale{position:relative; height:8px; background:var(--panel-2); border-radius:5px;}
+.zone-range{position:absolute; top:0; height:100%; border-radius:5px;}
+.zone-pace{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--text); text-align:right;}
+.zone-pace .fast{color:var(--muted);}
+@media(max-width:680px){
+  .zone-row{grid-template-columns:44px 1fr; grid-template-areas:"tag use" "scale scale" "pace pace"; row-gap:6px;}
+  .zone-tag{grid-area:tag;} .zone-use{grid-area:use;} .zone-scale{grid-area:scale;} .zone-pace{grid-area:pace; text-align:left;}
+}
+.mp-star{color:var(--gold); font-size:11px; margin-left:4px;}
+
+/* ---------- weekly table ---------- */
+.week-table-wrap{overflow-x:auto; border:1px solid var(--border); border-radius:16px; background:var(--panel);}
+table{width:100%; border-collapse:collapse; font-size:13px;}
+thead th{
+  text-align:left; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-2);
+  padding:12px 14px; border-bottom:1px solid var(--border); white-space:nowrap; position:sticky; top:0; background:var(--panel);
+}
+tbody td{padding:11px 14px; border-bottom:1px solid var(--border); vertical-align:top; color:var(--text);}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover{background:rgba(255,255,255,.02);}
+.phase-chip{
+  display:inline-block; font-size:11px; padding:3px 9px; border-radius:20px; font-weight:600; color:#0c1014; white-space:nowrap;
+}
+.km-strong{font-family:'IBM Plex Mono',monospace; color:var(--teal); font-weight:600;}
+
+/* ---------- daily plan / filters ---------- */
+.filters{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px;}
+.filters select, .filters input{
+  background:var(--panel-2); border:1px solid var(--border); color:var(--text);
+  padding:9px 12px; border-radius:9px; font-size:13px; font-family:'Inter'; outline:none;
+}
+.filters input{flex:1; min-width:180px;}
+.filters select:focus, .filters input:focus{border-color:var(--teal);}
+.zone-pill{
+  display:inline-flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace;
+  font-size:11px; font-weight:600; padding:2px 7px; border-radius:6px; color:#0c1014; min-width:34px;
+}
+.rest-row td{color:var(--muted-2);}
+.race-row td{background:linear-gradient(90deg, rgba(232,178,61,.12), transparent); }
+.race-row .tipo-cell{color:var(--gold); font-weight:700;}
+.tipo-cell{font-weight:600;}
+.sesion-cell{color:var(--muted); font-size:12.5px; max-width:340px;}
+.day-badge{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted-2);}
+.count-note{font-size:12px; color:var(--muted-2); margin-top:10px;}
+
+/* ---------- how to use ---------- */
+.howto-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+@media(max-width:800px){.howto-grid{grid-template-columns:1fr;}}
+.howto-card{background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:16px 18px;}
+.howto-card h4{font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--teal); margin-bottom:6px;}
+.howto-card p{font-size:13.5px; color:var(--text); line-height:1.5;}
+.howto-card p b{color:var(--gold);}
+
+footer{margin-top:50px; padding-top:20px; border-top:1px solid var(--border); font-size:12px; color:var(--muted-2); text-align:center;}
+footer a{color:var(--teal); text-decoration:none;}
+
+.tabs{display:flex; gap:6px; margin-bottom:16px; flex-wrap:wrap;}
+.tab-btn{
+  background:var(--panel); border:1px solid var(--border); color:var(--muted); padding:8px 14px; border-radius:9px;
+  font-size:12.5px; font-weight:600; cursor:pointer; font-family:'Inter';
+}
+.tab-btn.active{background:var(--teal-dim); border-color:var(--teal); color:var(--teal);}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="hero-top">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> IVÁN MAÑEZ · PLAN DE ENTRENAMIENTO</div>
+        <h1>Maratón <span>Valencia</span> 2026</h1>
+        <p class="hero-sub">17 semanas · del 10 de agosto al 6 de diciembre de 2026. Del rodaje de adaptación al día de carrera, sesión a sesión.</p>
+      </div>
+      <div class="hero-target">
+        <div class="lbl">Objetivo de carrera</div>
+        <div class="val">3:14:00</div>
+        <div class="sub">≈ 4:36 /km · 42.195 km</div>
+      </div>
+    </div>
+
+    <div class="countdown-row" id="countdownRow"></div>
+
+    <div class="track-wrap">
+      <div class="track-lbl-row">
+        <span>10 AGO · SEMANA 1</span>
+        <span id="trackPct">—</span>
+        <span>6 DIC · CARRERA</span>
+      </div>
+      <div class="track">
+        <div class="track-fill" id="trackFill"></div>
+        <div class="track-runner" id="trackRunner">🏃</div>
+      </div>
+    </div>
+  </header>
+
+  <section id="kpis">
+    <div class="kpi-grid" id="kpiGrid"></div>
+  </section>
+
+  <section id="weekly-chart">
+    <div class="sec-head">
+      <div class="sec-title"><span class="num">01</span> Kilómetros por semana</div>
+      <div class="sec-note">Pasa el ratón sobre cada barra para ver el detalle</div>
+    </div>
+    <div class="chart-panel">
+      <div class="legend" id="chartLegend"></div>
+      <div class="chart-container">
+        <svg id="chartSvg" viewBox="0 0 1080 340"></svg>
+        <div class="chart-tip" id="chartTip"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="zones">
+    <div class="sec-head">
+      <div class="sec-title"><span class="num">02</span> Ritmos de referencia</div>
+      <div class="sec-note">Objetivo maratón ≈ 4:36/km · zona MP 4:28–4:41/km <span class="mp-star">★</span></div>
+    </div>
+    <div class="zones-panel" id="zonesPanel"></div>
+  </section>
+
+  <section id="weekly-table">
+    <div class="sec-head">
+      <div class="sec-title"><span class="num">03</span> Resumen por semana</div>
+      <div class="sec-note">17 semanas · fase, km y foco de cada bloque</div>
+    </div>
+    <div class="week-table-wrap">
+      <table id="weekTable">
+        <thead><tr>
+          <th>Sem.</th><th>Fechas</th><th>Fase</th><th>Km</th><th>Sesiones clave</th><th>Tirada domingo</th><th>Objetivo de la semana</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="daily">
+    <div class="sec-head">
+      <div class="sec-title"><span class="num">04</span> Plan diario</div>
+      <div class="sec-note">118 sesiones · filtra por semana, fase o tipo de zona</div>
+    </div>
+    <div class="filters">
+      <select id="fWeek"><option value="">Todas las semanas</option></select>
+      <select id="fPhase"><option value="">Todas las fases</option></select>
+      <select id="fZone"><option value="">Todas las zonas</option></select>
+      <input id="fSearch" type="text" placeholder="Buscar sesión, tipo, objetivo…">
+    </div>
+    <div class="week-table-wrap">
+      <table id="dailyTable">
+        <thead><tr>
+          <th>Fecha</th><th>Sem.</th><th>Día</th><th>Fase</th><th>Tipo</th><th>Km</th><th>Zona</th><th>Ritmo</th><th>Sesión</th><th>Objetivo</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="count-note" id="dailyCount"></div>
+  </section>
+
+  <section id="howto">
+    <div class="sec-head">
+      <div class="sec-title"><span class="num">05</span> Cómo usar el plan</div>
+    </div>
+    <div class="howto-grid" id="howtoGrid"></div>
+  </section>
+
+  <footer>
+    Fuente del calendario oficial: <a href="https://www.valenciaciudaddelrunning.com/maraton/reglamento-maraton-valencia/" target="_blank">valenciaciudaddelrunning.com</a> · Dashboard generado a partir de tu plan de entrenamiento en Excel.
+  </footer>
+
+</div>
+
+<script>
+const DAILY = [{"Fecha": "2026-08-10", "Semana": 1, "Dia": "Lunes", "Fase": "Adaptación", "Tipo": "Rodaje suave", "Km": 7.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "7 km en E (5:01–5:26/km), siempre cómodo.", "Objetivo": "Asimilar", "Notas": ""}, {"Fecha": "2026-08-12", "Semana": 1, "Dia": "Miércoles", "Fase": "Adaptación", "Tipo": "Rodaje suave + series", "Km": 8.0, "Zona": "E", "Ritmo": "5:01–5:26/km - 3:50–4:00/km", "Sesion": "4k calentamiento + 10x400 /rec 1.30 parado", "Objetivo": "Reactivar velocidad", "Notas": ""}, {"Fecha": "2026-08-13", "Semana": 1, "Dia": "Jueves", "Fase": "Adaptación", "Tipo": "Rodaje suave", "Km": 8.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "8 km en E (5:01–5:26/km), siempre cómodo.", "Objetivo": "Base", "Notas": ""}, {"Fecha": "2026-08-14", "Semana": 1, "Dia": "Viernes", "Fase": "Adaptación", "Tipo": "Rodaje suave", "Km": 8.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "8 km en E (5:01–5:26/km), siempre cómodo.", "Objetivo": "Base", "Notas": ""}, {"Fecha": "2026-08-15", "Semana": 1, "Dia": "Sábado", "Fase": "Adaptación", "Tipo": "Tirada larga", "Km": 14.0, "Zona": "LR", "Ritmo": "4:51–5:01/km", "Sesion": "14 km en LR (4:51–5:01/km), controlados.", "Objetivo": "Resistencia", "Notas": ""}, {"Fecha": "2026-08-16", "Semana": 1, "Dia": "Domingo", "Fase": "Adaptación", "Tipo": "Descanso", "Km": 0.0, "Zona": "—", "Ritmo": "—", "Sesion": "Descanso completo. Movilidad suave opcional si te apetece.", "Objetivo": "Asimilar", "Notas": ""}, {"Fecha": "2026-08-17", "Semana": 2, "Dia": "Lunes", "Fase": "Adaptación", "Tipo": "Rodaje + rectas", "Km": 8.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "8 km en E (5:01–5:26/km) + 6×20'' rectas relajadas.", "Objetivo": "Economía", "Notas": ""}, {"Fecha": "2026-08-18", "Semana": 2, "Dia": "Martes", "Fase": "Adaptación", "Tipo": "Descanso", "Km": 0.0, "Zona": "—", "Ritmo": "—", "Sesion": "Descanso completo. Movilidad suave opcional si te apetece.", "Objetivo": "Asimilar", "Notas": ""}, {"Fecha": "2026-08-19", "Semana": 2, "Dia": "Miércoles", "Fase": "Adaptación", "Tipo": "Series 800 m", "Km": 10.0, "Zona": "T", "Ritmo": "4:06–4:18/km", "Sesion": "3 km E + 5×800 en T (4:06–4:18/km) / 2' rec +3k enfriar hasta 10 km.", "Objetivo": "Activar umbral", "Notas": ""}, {"Fecha": "2026-08-20", "Semana": 2, "Dia": "Jueves", "Fase": "Adaptación", "Tipo": "Rodaje suave", "Km": 9.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "9 km en E (5:01–5:26/km), siempre cómodo.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-08-21", "Semana": 2, "Dia": "Viernes", "Fase": "Adaptación", "Tipo": "Rodaje progresivo", "Km": 11.0, "Zona": "S", "Ritmo": "4:46–4:51/km", "Sesion": "11 km: empezar cómodo en E (~5:15–5:25/km) y terminar los últimos 3 km en S (4:46–4:51/km).", "Objetivo": "Control", "Notas": ""}, {"Fecha": "2026-08-22", "Semana": 2, "Dia": "Sábado", "Fase": "Adaptación", "Tipo": "Descanso", "Km": 0.0, "Zona": "—", "Ritmo": "—", "Sesion": "Descanso completo. Movilidad suave opcional si te apetece.", "Objetivo": "Asimilar", "Notas": ""}, {"Fecha": "2026-08-23", "Semana": 2, "Dia": "Domingo", "Fase": "Adaptación", "Tipo": "Tirada larga", "Km": 16.0, "Zona": "LR", "Ritmo": "4:51–5:01/km", "Sesion": "16 km en LR (4:51–5:01/km), controlados.", "Objetivo": "Resistencia", "Notas": ""}, {"Fecha": "2026-08-24", "Semana": 3, "Dia": "Lunes", "Fase": "Base", "Tipo": "Recuperación", "Km": 8.0, "Zona": "REC", "Ritmo": "5:26–5:46/km", "Sesion": "8 km en REC (5:26–5:46/km), muy suaves.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-08-25", "Semana": 3, "Dia": "Martes", "Fase": "Base", "Tipo": "Descanso", "Km": 0.0, "Zona": "—", "Ritmo": "—", "Sesion": "Descanso completo. Movilidad suave opcional si te apetece.", "Objetivo": "Asimilar", "Notas": ""}, {"Fecha": "2026-08-26", "Semana": 3, "Dia": "Miércoles", "Fase": "Base", "Tipo": "Series 800 m", "Km": 12.0, "Zona": "I", "Ritmo": "3:46–3:56/km", "Sesion": "3 km E + 6×800 m en I (3:46–3:56/km), rec. 400 m trote + enfriar hasta 12 km.", "Objetivo": "Economía/VO₂", "Notas": ""}, {"Fecha": "2026-08-27", "Semana": 3, "Dia": "Jueves", "Fase": "Base", "Tipo": "Rodaje suave", "Km": 9.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "9 km en E (5:01–5:26/km), siempre cómodo.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-08-28", "Semana": 3, "Dia": "Viernes", "Fase": "Base", "Tipo": "Tempo controlado", "Km": 10.0, "Zona": "S", "Ritmo": "4:46–4:51/km", "Sesion": "10 km totales con 5 km centrales en S (4:46–4:51/km); resto en E.", "Objetivo": "Resistencia alta", "Notas": ""}, {"Fecha": "2026-08-29", "Semana": 3, "Dia": "Sábado", "Fase": "Base", "Tipo": "Rodaje + rectas", "Km": 8.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "8 km en E (5:01–5:26/km) + 6×20'' rectas relajadas.", "Objetivo": "Economía", "Notas": ""}, {"Fecha": "2026-08-30", "Semana": 3, "Dia": "Domingo", "Fase": "Base", "Tipo": "Tirada larga", "Km": 18.0, "Zona": "LR", "Ritmo": "4:51–5:01/km", "Sesion": "18 km en LR (4:51–5:01/km), controlados.", "Objetivo": "Resistencia", "Notas": ""}, {"Fecha": "2026-08-31", "Semana": 4, "Dia": "Lunes", "Fase": "Base", "Tipo": "Recuperación", "Km": 8.0, "Zona": "REC", "Ritmo": "5:26–5:46/km", "Sesion": "8 km en REC (5:26–5:46/km), muy suaves.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-09-01", "Semana": 4, "Dia": "Martes", "Fase": "Base", "Tipo": "Descanso", "Km": 0.0, "Zona": "—", "Ritmo": "—", "Sesion": "Descanso completo. Movilidad suave opcional si te apetece.", "Objetivo": "Asimilar", "Notas": ""}, {"Fecha": "2026-09-02", "Semana": 4, "Dia": "Miércoles", "Fase": "Base", "Tipo": "Umbral 3×2 km", "Km": 13.0, "Zona": "T", "Ritmo": "4:06–4:18/km", "Sesion": "3 km E + 3×2 km en T (4:06–4:18/km), rec. 2' trote + enfriar hasta 13 km.", "Objetivo": "Umbral", "Notas": ""}, {"Fecha": "2026-09-03", "Semana": 4, "Dia": "Jueves", "Fase": "Base", "Tipo": "Rodaje suave", "Km": 10.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "10 km en E (5:01–5:26/km), siempre cómodo.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-09-04", "Semana": 4, "Dia": "Viernes", "Fase": "Base", "Tipo": "Rodaje medio", "Km": 11.0, "Zona": "S", "Ritmo": "4:46–4:51/km", "Sesion": "11 km en S (4:46–4:51/km), controlado y sin convertirlo en tempo.", "Objetivo": "Resistencia", "Notas": ""}, {"Fecha": "2026-09-05", "Semana": 4, "Dia": "Sábado", "Fase": "Base", "Tipo": "Rodaje + rectas", "Km": 8.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "8 km en E (5:01–5:26/km) + 8×20'' rectas relajadas.", "Objetivo": "Economía", "Notas": ""}, {"Fecha": "2026-09-06", "Semana": 4, "Dia": "Domingo", "Fase": "Base", "Tipo": "Tirada larga", "Km": 20.0, "Zona": "LR", "Ritmo": "4:51–5:01/km", "Sesion": "20 km en LR (4:51–5:01/km), controlados. Si vas muy suelto, termina los últimos 3 km hacia 4:51/km, sin pasar a MP.", "Objetivo": "Resistencia", "Notas": ""}, {"Fecha": "2026-09-07", "Semana": 5, "Dia": "Lunes", "Fase": "Descarga", "Tipo": "Rodaje suave", "Km": 8.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "8 km en E (5:01–5:26/km) + 6×20'' rectas relajadas.", "Objetivo": "Mantener", "Notas": ""}, {"Fecha": "2026-09-08", "Semana": 5, "Dia": "Martes", "Fase": "Descarga", "Tipo": "Descanso", "Km": 0.0, "Zona": "—", "Ritmo": "—", "Sesion": "Descanso completo. Movilidad suave opcional si te apetece.", "Objetivo": "Asimilar", "Notas": ""}, {"Fecha": "2026-09-09", "Semana": 5, "Dia": "Miércoles", "Fase": "Descarga", "Tipo": "Cuestas", "Km": 11.0, "Zona": "T", "Ritmo": "4:06–4:18/km", "Sesion": "3 km E + 10×60'' cuesta fuerte controlada (esfuerzo T), bajar al trote + enfriar hasta 11 km.", "Objetivo": "Fuerza específica", "Notas": ""}, {"Fecha": "2026-09-10", "Semana": 5, "Dia": "Jueves", "Fase": "Descarga", "Tipo": "Rodaje suave", "Km": 9.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "9 km en E (5:01–5:26/km), siempre cómodo.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-09-11", "Semana": 5, "Dia": "Viernes", "Fase": "Descarga", "Tipo": "Rodaje progresivo", "Km": 10.0, "Zona": "S", "Ritmo": "4:46–4:51/km", "Sesion": "10 km progresivos desde E (~5:15/km) hasta S (4:46–4:51/km) al final.", "Objetivo": "Control", "Notas": ""}, {"Fecha": "2026-09-12", "Semana": 5, "Dia": "Sábado", "Fase": "Descarga", "Tipo": "Descanso", "Km": 0.0, "Zona": "—", "Ritmo": "—", "Sesion": "Descanso completo. Movilidad suave opcional si te apetece.", "Objetivo": "Descarga", "Notas": ""}, {"Fecha": "2026-09-13", "Semana": 5, "Dia": "Domingo", "Fase": "Descarga", "Tipo": "Tirada larga", "Km": 20.0, "Zona": "LR", "Ritmo": "4:51–5:01/km", "Sesion": "20 km en LR (4:51–5:01/km), controlados.", "Objetivo": "Resistencia", "Notas": ""}, {"Fecha": "2026-09-14", "Semana": 6, "Dia": "Lunes", "Fase": "Construcción", "Tipo": "Recuperación", "Km": 8.0, "Zona": "REC", "Ritmo": "5:26–5:46/km", "Sesion": "8 km en REC (5:26–5:46/km), muy suaves.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-09-15", "Semana": 6, "Dia": "Martes", "Fase": "Construcción", "Tipo": "Descanso", "Km": 0.0, "Zona": "—", "Ritmo": "—", "Sesion": "Descanso completo. Movilidad suave opcional si te apetece.", "Objetivo": "Asimilar", "Notas": ""}, {"Fecha": "2026-09-16", "Semana": 6, "Dia": "Miércoles", "Fase": "Construcción", "Tipo": "Series 1 km", "Km": 12.0, "Zona": "I", "Ritmo": "3:46–3:56/km", "Sesion": "3 km E + 6×1 km en I (3:46–3:56/km), rec. 2' +3k enfriamiento completar hasta 12 km.", "Objetivo": "Economía/VO₂", "Notas": ""}, {"Fecha": "2026-09-17", "Semana": 6, "Dia": "Jueves", "Fase": "Construcción", "Tipo": "Rodaje suave", "Km": 10.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "10 km en E (5:01–5:26/km), siempre cómodo.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-09-18", "Semana": 6, "Dia": "Viernes", "Fase": "Construcción", "Tipo": "Ritmo maratón", "Km": 12.0, "Zona": "MP", "Ritmo": "4:28–4:41/km", "Sesion": "3 km E + 6 km a ritmo específico ~4:34–4:38/km (zona MP 4:28–4:41/km) + enfriamiento hasta 12 km.", "Objetivo": "Automatizar MP", "Notas": ""}, {"Fecha": "2026-09-19", "Semana": 6, "Dia": "Sábado", "Fase": "Descarga", "Tipo": "Descanso", "Km": 0.0, "Zona": "—", "Ritmo": "—", "Sesion": "Descanso completo. Movilidad suave opcional si te apetece.", "Objetivo": "Asimilar", "Notas": ""}, {"Fecha": "2026-09-20", "Semana": 6, "Dia": "Domingo", "Fase": "Construcción", "Tipo": "Tirada larga", "Km": 22.0, "Zona": "LR", "Ritmo": "4:51–5:01/km", "Sesion": "22 km en LR (4:51–5:01/km), controlados. Si vas bien, últimos 4 km en la parte rápida de LR (~4:51–4:55/km).", "Objetivo": "Resistencia", "Notas": ""}, {"Fecha": "2026-09-21", "Semana": 7, "Dia": "Lunes", "Fase": "Construcción", "Tipo": "Recuperación", "Km": 8.0, "Zona": "REC", "Ritmo": "5:26–5:46/km", "Sesion": "8 km en REC (5:26–5:46/km), muy suaves.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-09-22", "Semana": 7, "Dia": "Martes", "Fase": "Construcción", "Tipo": "Descanso", "Km": 0.0, "Zona": "—", "Ritmo": "—", "Sesion": "Descanso completo. Movilidad suave opcional si te apetece.", "Objetivo": "Asimilar", "Notas": ""}, {"Fecha": "2026-09-23", "Semana": 7, "Dia": "Miércoles", "Fase": "Construcción", "Tipo": "Umbral 2×3 km", "Km": 14.0, "Zona": "T", "Ritmo": "4:06–4:18/km", "Sesion": "3 km E + 2×3 km en T (4:06–4:18/km), rec. 3' trote + completar hasta 14 km.", "Objetivo": "Umbral", "Notas": ""}, {"Fecha": "2026-09-24", "Semana": 7, "Dia": "Jueves", "Fase": "Construcción", "Tipo": "Rodaje suave", "Km": 11.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "11 km en E (5:01–5:26/km), siempre cómodo.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-09-25", "Semana": 7, "Dia": "Viernes", "Fase": "Construcción", "Tipo": "Rodaje medio", "Km": 13.0, "Zona": "S", "Ritmo": "4:46–4:51/km", "Sesion": "13 km en S (4:46–4:51/km), controlado y sin convertirlo en tempo.", "Objetivo": "Resistencia", "Notas": ""}, {"Fecha": "2026-09-26", "Semana": 7, "Dia": "Sábado", "Fase": "Construcción", "Tipo": "Rodaje + rectas", "Km": 8.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "8 km en E (5:01–5:26/km) + 8×20'' rectas relajadas.", "Objetivo": "Economía", "Notas": ""}, {"Fecha": "2026-09-27", "Semana": 7, "Dia": "Domingo", "Fase": "Construcción", "Tipo": "Tirada larga", "Km": 24.0, "Zona": "LR", "Ritmo": "4:51–5:01/km", "Sesion": "24 km en LR (4:51–5:01/km), controlados. Practica hidratación y desayuno de carrera.", "Objetivo": "Resistencia/nutrición", "Notas": ""}, {"Fecha": "2026-09-28", "Semana": 8, "Dia": "Lunes", "Fase": "Construcción", "Tipo": "Recuperación", "Km": 10.0, "Zona": "REC", "Ritmo": "5:26–5:46/km", "Sesion": "10 km en REC (5:26–5:46/km), muy suaves.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-09-29", "Semana": 8, "Dia": "Martes", "Fase": "Construcción", "Tipo": "Descanso", "Km": 0.0, "Zona": "—", "Ritmo": "—", "Sesion": "Descanso completo. Movilidad suave opcional si te apetece.", "Objetivo": "Asimilar", "Notas": ""}, {"Fecha": "2026-09-30", "Semana": 8, "Dia": "Miércoles", "Fase": "Construcción", "Tipo": "Series 1 km", "Km": 15.0, "Zona": "I", "Ritmo": "3:46–3:56/km", "Sesion": "3 km E + 8×1 km en I (3:46–3:56/km), rec. 2' trote + completar hasta 15 km.", "Objetivo": "VO₂/economía", "Notas": ""}, {"Fecha": "2026-10-01", "Semana": 8, "Dia": "Jueves", "Fase": "Construcción", "Tipo": "Rodaje suave", "Km": 11.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "11 km en E (5:01–5:26/km), siempre cómodo.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-10-02", "Semana": 8, "Dia": "Viernes", "Fase": "Construcción", "Tipo": "Ritmo maratón", "Km": 13.0, "Zona": "MP", "Ritmo": "4:28–4:41/km", "Sesion": "3 km E + 8 km a ritmo específico ~4:34–4:38/km (zona MP 4:28–4:41/km) + enfriamiento hasta 13 km.", "Objetivo": "Automatizar MP", "Notas": ""}, {"Fecha": "2026-10-03", "Semana": 8, "Dia": "Sábado", "Fase": "Construcción", "Tipo": "Rodaje suave", "Km": 9.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "9 km en E (5:01–5:26/km) + 6×20'' rectas relajadas.", "Objetivo": "Economía", "Notas": ""}, {"Fecha": "2026-10-04", "Semana": 8, "Dia": "Domingo", "Fase": "Construcción", "Tipo": "Tirada larga", "Km": 26.0, "Zona": "LR", "Ritmo": "4:51–5:01/km", "Sesion": "26 km en LR (4:51–5:01/km), controlados. Si estás entero, últimos 5 km en la parte rápida de LR (~4:51–4:55/km).", "Objetivo": "Resistencia", "Notas": ""}, {"Fecha": "2026-10-05", "Semana": 9, "Dia": "Lunes", "Fase": "Descarga", "Tipo": "Rodaje + rectas", "Km": 10.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "10 km en E (5:01–5:26/km) + 6×20'' rectas relajadas.", "Objetivo": "Mantener", "Notas": ""}, {"Fecha": "2026-10-06", "Semana": 9, "Dia": "Martes", "Fase": "Descarga", "Tipo": "Descanso", "Km": 0.0, "Zona": "—", "Ritmo": "—", "Sesion": "Descanso completo. Movilidad suave opcional si te apetece.", "Objetivo": "Asimilar", "Notas": ""}, {"Fecha": "2026-10-07", "Semana": 9, "Dia": "Miércoles", "Fase": "Descarga", "Tipo": "Fartlek 5×4'", "Km": 12.0, "Zona": "T", "Ritmo": "4:06–4:18/km", "Sesion": "3 km E + 5×4' en T (4:06–4:18/km) / 2' suave + enfriar hasta 12 km.", "Objetivo": "Umbral dinámico", "Notas": ""}, {"Fecha": "2026-10-08", "Semana": 9, "Dia": "Jueves", "Fase": "Descarga", "Tipo": "Rodaje suave", "Km": 10.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "10 km en E (5:01–5:26/km), siempre cómodo.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-10-09", "Semana": 9, "Dia": "Viernes", "Fase": "Descarga", "Tipo": "Rodaje medio", "Km": 10.0, "Zona": "S", "Ritmo": "4:46–4:51/km", "Sesion": "10 km en S (4:46–4:51/km), controlado y sin convertirlo en tempo.", "Objetivo": "Resistencia", "Notas": ""}, {"Fecha": "2026-10-10", "Semana": 9, "Dia": "Sábado", "Fase": "Descarga", "Tipo": "Descanso", "Km": 0.0, "Zona": "—", "Ritmo": "—", "Sesion": "Descanso completo. Movilidad suave opcional si te apetece.", "Objetivo": "Descarga", "Notas": ""}, {"Fecha": "2026-10-11", "Semana": 9, "Dia": "Domingo", "Fase": "Descarga", "Tipo": "Tirada larga", "Km": 26.0, "Zona": "LR", "Ritmo": "4:51–5:01/km", "Sesion": "26 km en LR (4:51–5:01/km), controlados. Sin bloque rápido.", "Objetivo": "Resistencia", "Notas": ""}, {"Fecha": "2026-10-12", "Semana": 10, "Dia": "Lunes", "Fase": "Específica", "Tipo": "Recuperación", "Km": 10.0, "Zona": "REC", "Ritmo": "5:26–5:46/km", "Sesion": "10 km en REC (5:26–5:46/km), muy suaves.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-10-13", "Semana": 10, "Dia": "Martes", "Fase": "Específica", "Tipo": "Descanso", "Km": 0.0, "Zona": "—", "Ritmo": "—", "Sesion": "Descanso completo. Movilidad suave opcional si te apetece.", "Objetivo": "Asimilar", "Notas": ""}, {"Fecha": "2026-10-14", "Semana": 10, "Dia": "Miércoles", "Fase": "Específica", "Tipo": "Umbral 3×3 km", "Km": 15.0, "Zona": "T", "Ritmo": "4:06–4:18/km", "Sesion": "3 km E + 3×3 km en T (4:06–4:18/km), rec. 2'30'' trote + enfriar hasta 15 km.", "Objetivo": "Umbral específico", "Notas": ""}, {"Fecha": "2026-10-15", "Semana": 10, "Dia": "Jueves", "Fase": "Específica", "Tipo": "Rodaje suave", "Km": 12.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "12 km en E (5:01–5:26/km), siempre cómodo.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-10-16", "Semana": 10, "Dia": "Viernes", "Fase": "Específica", "Tipo": "Rodaje medio", "Km": 14.0, "Zona": "S", "Ritmo": "4:46–4:51/km", "Sesion": "14 km en S (4:46–4:51/km), controlado y sin convertirlo en tempo.", "Objetivo": "Resistencia", "Notas": ""}, {"Fecha": "2026-10-17", "Semana": 10, "Dia": "Sábado", "Fase": "Específica", "Tipo": "Rodaje suave", "Km": 8.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "8 km en E (5:01–5:26/km) + 6×20'' rectas relajadas.", "Objetivo": "Economía", "Notas": ""}, {"Fecha": "2026-10-18", "Semana": 10, "Dia": "Domingo", "Fase": "Específica", "Tipo": "Tirada específica", "Km": 28.0, "Zona": "LR/MP", "Ritmo": "LR 4:51–5:01/km / bloques MP 4:28–4:41/km", "Sesion": "28 km: 18 km en LR (4:51–5:01/km) + 8 km a ~4:34–4:40/km (MP) + 2 km suaves.", "Objetivo": "Específica", "Notas": ""}, {"Fecha": "2026-10-19", "Semana": 11, "Dia": "Lunes", "Fase": "Específica", "Tipo": "Recuperación", "Km": 10.0, "Zona": "REC", "Ritmo": "5:26–5:46/km", "Sesion": "10 km en REC (5:26–5:46/km), muy suaves.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-10-20", "Semana": 11, "Dia": "Martes", "Fase": "Específica", "Tipo": "Descanso", "Km": 0.0, "Zona": "—", "Ritmo": "—", "Sesion": "Descanso completo. Movilidad suave opcional si te apetece.", "Objetivo": "Asimilar", "Notas": ""}, {"Fecha": "2026-10-21", "Semana": 11, "Dia": "Miércoles", "Fase": "Específica", "Tipo": "Series 1600 m", "Km": 16.0, "Zona": "T", "Ritmo": "4:06–4:18/km", "Sesion": "3 km E + 5×1600 m en T (4:06–4:18/km), rec. 2' trote + enfriar hasta 16 km.", "Objetivo": "Umbral", "Notas": ""}, {"Fecha": "2026-10-22", "Semana": 11, "Dia": "Jueves", "Fase": "Específica", "Tipo": "Rodaje suave", "Km": 12.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "12 km en E (5:01–5:26/km), siempre cómodo.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-10-23", "Semana": 11, "Dia": "Viernes", "Fase": "Específica", "Tipo": "Ritmo maratón", "Km": 14.0, "Zona": "MP", "Ritmo": "4:28–4:41/km", "Sesion": "2 km E + 10 km a ritmo específico ~4:34–4:38/km (zona MP 4:28–4:41/km) + enfriamiento hasta 14 km.", "Objetivo": "MP sostenido", "Notas": ""}, {"Fecha": "2026-10-24", "Semana": 11, "Dia": "Sábado", "Fase": "Específica", "Tipo": "Rodaje suave", "Km": 8.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "8 km en E (5:01–5:26/km) + 6×20'' rectas relajadas.", "Objetivo": "Economía", "Notas": ""}, {"Fecha": "2026-10-25", "Semana": 11, "Dia": "Domingo", "Fase": "Específica", "Tipo": "Tirada larga", "Km": 30.0, "Zona": "LR", "Ritmo": "4:51–5:01/km", "Sesion": "30 km en LR (4:51–5:01/km), controlados. Ensaya exactamente la nutrición de carrera.", "Objetivo": "Resistencia/nutrición", "Notas": ""}, {"Fecha": "2026-10-26", "Semana": 12, "Dia": "Lunes", "Fase": "Específica", "Tipo": "Recuperación", "Km": 10.0, "Zona": "REC", "Ritmo": "5:26–5:46/km", "Sesion": "10 km en REC (5:26–5:46/km), muy suaves.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-10-27", "Semana": 12, "Dia": "Martes", "Fase": "Específica", "Tipo": "Descanso", "Km": 0.0, "Zona": "—", "Ritmo": "—", "Sesion": "Descanso completo. Movilidad suave opcional si te apetece.", "Objetivo": "Asimilar", "Notas": ""}, {"Fecha": "2026-10-28", "Semana": 12, "Dia": "Miércoles", "Fase": "Específica", "Tipo": "Umbral 4×2 km", "Km": 16.0, "Zona": "T", "Ritmo": "4:06–4:18/km", "Sesion": "3 km E + 4×2 km en T (4:06–4:18/km), rec. 2' trote + enfriar hasta 16 km.", "Objetivo": "Umbral", "Notas": ""}, {"Fecha": "2026-10-29", "Semana": 12, "Dia": "Jueves", "Fase": "Específica", "Tipo": "Rodaje suave", "Km": 13.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "13 km en E (5:01–5:26/km), siempre cómodo.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-10-30", "Semana": 12, "Dia": "Viernes", "Fase": "Específica", "Tipo": "Rodaje medio", "Km": 15.0, "Zona": "S", "Ritmo": "4:46–4:51/km", "Sesion": "15 km en S (4:46–4:51/km), controlado y sin convertirlo en tempo.", "Objetivo": "Resistencia", "Notas": ""}, {"Fecha": "2026-10-31", "Semana": 12, "Dia": "Sábado", "Fase": "Específica", "Tipo": "Rodaje suave", "Km": 8.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "8 km en E (5:01–5:26/km) + 6×20'' rectas relajadas.", "Objetivo": "Economía", "Notas": ""}, {"Fecha": "2026-11-01", "Semana": 12, "Dia": "Domingo", "Fase": "Específica", "Tipo": "Tirada larga", "Km": 32.0, "Zona": "LR", "Ritmo": "4:51–5:01/km", "Sesion": "32 km en LR (4:51–5:01/km), controlados. Últimos 5 km hacia 4:51/km solo si te encuentras muy bien.", "Objetivo": "Máxima resistencia", "Notas": ""}, {"Fecha": "2026-11-02", "Semana": 13, "Dia": "Lunes", "Fase": "Descarga", "Tipo": "Rodaje suave", "Km": 10.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "10 km en E (5:01–5:26/km) + 6×20'' rectas relajadas.", "Objetivo": "Mantener", "Notas": ""}, {"Fecha": "2026-11-03", "Semana": 13, "Dia": "Martes", "Fase": "Descarga", "Tipo": "Descanso", "Km": 0.0, "Zona": "—", "Ritmo": "—", "Sesion": "Descanso completo. Movilidad suave opcional si te apetece.", "Objetivo": "Asimilar", "Notas": ""}, {"Fecha": "2026-11-04", "Semana": 13, "Dia": "Miércoles", "Fase": "Descarga", "Tipo": "Series 800 m", "Km": 13.0, "Zona": "I", "Ritmo": "3:46–3:56/km", "Sesion": "3 km E + 8×800 m en I (3:46–3:56/km), rec. 400 m trote + enfriar hasta 13 km.", "Objetivo": "Economía", "Notas": ""}, {"Fecha": "2026-11-05", "Semana": 13, "Dia": "Jueves", "Fase": "Descarga", "Tipo": "Rodaje suave", "Km": 11.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "11 km en E (5:01–5:26/km), siempre cómodo.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-11-06", "Semana": 13, "Dia": "Viernes", "Fase": "Descarga", "Tipo": "Ritmo maratón", "Km": 12.0, "Zona": "MP", "Ritmo": "4:28–4:41/km", "Sesion": "2 km E + 8 km a ritmo específico ~4:34–4:38/km (zona MP 4:28–4:41/km) + enfriamiento hasta 12 km.", "Objetivo": "MP", "Notas": ""}, {"Fecha": "2026-11-07", "Semana": 13, "Dia": "Sábado", "Fase": "Descarga", "Tipo": "Descanso", "Km": 0.0, "Zona": "—", "Ritmo": "—", "Sesion": "Descanso completo. Movilidad suave opcional si te apetece.", "Objetivo": "Descarga", "Notas": ""}, {"Fecha": "2026-11-08", "Semana": 13, "Dia": "Domingo", "Fase": "Descarga", "Tipo": "Tirada específica", "Km": 30.0, "Zona": "LR/MP", "Ritmo": "LR 4:51–5:01/km / bloques MP 4:28–4:41/km", "Sesion": "30 km: 10 km LR + 2×5 km a ~4:34–4:38/km (MP), con 2 km E entre bloques + completar en LR.", "Objetivo": "Específica", "Notas": ""}, {"Fecha": "2026-11-09", "Semana": 14, "Dia": "Lunes", "Fase": "Pico específico", "Tipo": "Recuperación", "Km": 10.0, "Zona": "REC", "Ritmo": "5:26–5:46/km", "Sesion": "10 km en REC (5:26–5:46/km), muy suaves.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-11-10", "Semana": 14, "Dia": "Martes", "Fase": "Pico específico", "Tipo": "Descanso", "Km": 0.0, "Zona": "—", "Ritmo": "—", "Sesion": "Descanso completo. Movilidad suave opcional si te apetece.", "Objetivo": "Asimilar", "Notas": ""}, {"Fecha": "2026-11-11", "Semana": 14, "Dia": "Miércoles", "Fase": "Pico específico", "Tipo": "Series 1 km", "Km": 16.0, "Zona": "I", "Ritmo": "3:46–3:56/km", "Sesion": "3 km E + 6×1 km en I (3:46–3:56/km), rec. 2' trote + completar hasta 16 km.", "Objetivo": "Economía/chispa", "Notas": ""}, {"Fecha": "2026-11-12", "Semana": 14, "Dia": "Jueves", "Fase": "Pico específico", "Tipo": "Rodaje suave", "Km": 13.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "13 km en E (5:01–5:26/km), siempre cómodo.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-11-13", "Semana": 14, "Dia": "Viernes", "Fase": "Pico específico", "Tipo": "Ritmo maratón", "Km": 16.0, "Zona": "MP", "Ritmo": "4:28–4:41/km", "Sesion": "2 km E + 12 km a ritmo específico ~4:34–4:38/km (zona MP 4:28–4:41/km) + enfriamiento hasta 16 km.", "Objetivo": "MP", "Notas": ""}, {"Fecha": "2026-11-14", "Semana": 14, "Dia": "Sábado", "Fase": "Pico específico", "Tipo": "Rodaje suave", "Km": 7.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "7 km en E (5:01–5:26/km) + 6×20'' rectas relajadas.", "Objetivo": "Frescura", "Notas": ""}, {"Fecha": "2026-11-15", "Semana": 14, "Dia": "Domingo", "Fase": "Pico específico", "Tipo": "Tirada específica clave", "Km": 32.0, "Zona": "LR/MP", "Ritmo": "LR 4:51–5:01/km / bloques MP 4:28–4:41/km", "Sesion": "32 km: 8 km LR + 2×7 km a ~4:34–4:38/km (MP), con 2 km E entre bloques + 8 km LR. Ensayo completo de geles/hidratación.", "Objetivo": "Ensayo principal", "Notas": ""}, {"Fecha": "2026-11-16", "Semana": 15, "Dia": "Lunes", "Fase": "Pre-taper", "Tipo": "Recuperación", "Km": 8.0, "Zona": "REC", "Ritmo": "5:26–5:46/km", "Sesion": "8 km en REC (5:26–5:46/km), muy suaves.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-11-17", "Semana": 15, "Dia": "Martes", "Fase": "Pre-taper", "Tipo": "Descanso", "Km": 0.0, "Zona": "—", "Ritmo": "—", "Sesion": "Descanso completo. Movilidad suave opcional si te apetece.", "Objetivo": "Asimilar", "Notas": ""}, {"Fecha": "2026-11-18", "Semana": 15, "Dia": "Miércoles", "Fase": "Pre-taper", "Tipo": "Umbral corto", "Km": 14.0, "Zona": "T", "Ritmo": "4:06–4:18/km", "Sesion": "3 km E + 3×2 km en T (4:06–4:18/km), rec. 2' trote + completar hasta 14 km.", "Objetivo": "Umbral", "Notas": ""}, {"Fecha": "2026-11-19", "Semana": 15, "Dia": "Jueves", "Fase": "Pre-taper", "Tipo": "Rodaje suave", "Km": 11.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "11 km en E (5:01–5:26/km), siempre cómodo.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-11-20", "Semana": 15, "Dia": "Viernes", "Fase": "Pre-taper", "Tipo": "Ritmo maratón", "Km": 13.0, "Zona": "MP", "Ritmo": "4:28–4:41/km", "Sesion": "3 km E + 8 km a ritmo específico ~4:34–4:38/km (zona MP 4:28–4:41/km) + enfriamiento hasta 13 km.", "Objetivo": "MP", "Notas": ""}, {"Fecha": "2026-11-21", "Semana": 15, "Dia": "Sábado", "Fase": "Pre-taper", "Tipo": "Rodaje suave", "Km": 8.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "8 km en E (5:01–5:26/km) + 6×20'' rectas relajadas.", "Objetivo": "Economía", "Notas": ""}, {"Fecha": "2026-11-22", "Semana": 15, "Dia": "Domingo", "Fase": "Pre-taper", "Tipo": "Tirada específica", "Km": 26.0, "Zona": "LR/MP", "Ritmo": "LR 4:51–5:01/km / bloques MP 4:28–4:41/km", "Sesion": "26 km: 14 km LR + 8 km a ~4:34–4:38/km (MP) + 4 km E.", "Objetivo": "Última específica", "Notas": ""}, {"Fecha": "2026-11-23", "Semana": 16, "Dia": "Lunes", "Fase": "Taper", "Tipo": "Rodaje suave + rectas", "Km": 8.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "8 km en E (5:01–5:26/km) + 4×20'' rectas relajadas.", "Objetivo": "Economía", "Notas": ""}, {"Fecha": "2026-11-24", "Semana": 16, "Dia": "Martes", "Fase": "Taper", "Tipo": "Descanso", "Km": 0.0, "Zona": "—", "Ritmo": "—", "Sesion": "Descanso completo. Movilidad suave opcional si te apetece.", "Objetivo": "Asimilar", "Notas": ""}, {"Fecha": "2026-11-25", "Semana": 16, "Dia": "Miércoles", "Fase": "Taper", "Tipo": "Series 1 km", "Km": 11.0, "Zona": "I", "Ritmo": "3:46–3:56/km", "Sesion": "3 km E + 4×1 km en I (3:46–3:56/km), rec. 2' trote + completar hasta 11 km.", "Objetivo": "Chispa", "Notas": ""}, {"Fecha": "2026-11-26", "Semana": 16, "Dia": "Jueves", "Fase": "Taper", "Tipo": "Rodaje suave", "Km": 9.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "9 km en E (5:01–5:26/km), siempre cómodo.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-11-27", "Semana": 16, "Dia": "Viernes", "Fase": "Taper", "Tipo": "Ritmo maratón", "Km": 10.0, "Zona": "MP", "Ritmo": "4:28–4:41/km", "Sesion": "2 km E + 6 km a ritmo específico ~4:34–4:38/km (zona MP 4:28–4:41/km) + enfriamiento hasta 10 km.", "Objetivo": "Recordatorio MP", "Notas": ""}, {"Fecha": "2026-11-28", "Semana": 16, "Dia": "Sábado", "Fase": "Taper", "Tipo": "Descanso", "Km": 0.0, "Zona": "—", "Ritmo": "—", "Sesion": "Descanso completo. Movilidad suave opcional si te apetece.", "Objetivo": "Recuperar", "Notas": ""}, {"Fecha": "2026-11-29", "Semana": 16, "Dia": "Domingo", "Fase": "Taper", "Tipo": "Tirada larga corta", "Km": 18.0, "Zona": "LR", "Ritmo": "4:51–5:01/km", "Sesion": "18 km en LR (4:51–5:01/km); últimos 4 km a ~4:34–4:38/km (MP) solo si estás muy bien.", "Objetivo": "Mantener resistencia", "Notas": ""}, {"Fecha": "2026-11-30", "Semana": 17, "Dia": "Lunes", "Fase": "Carrera", "Tipo": "Activación MP", "Km": 8.0, "Zona": "MP", "Ritmo": "4:28–4:41/km", "Sesion": "2 km E + 3×1 km a ~4:34–4:38/km (zona MP 4:28–4:41/km) con 500 m suave + completar 8 km.", "Objetivo": "Recordar MP", "Notas": ""}, {"Fecha": "2026-12-01", "Semana": 17, "Dia": "Martes", "Fase": "Carrera", "Tipo": "Descanso", "Km": 0.0, "Zona": "—", "Ritmo": "—", "Sesion": "Descanso completo. Movilidad suave opcional si te apetece.", "Objetivo": "Frescura", "Notas": ""}, {"Fecha": "2026-12-02", "Semana": 17, "Dia": "Miércoles", "Fase": "Carrera", "Tipo": "Activación corta", "Km": 5.0, "Zona": "I", "Ritmo": "3:46–3:56/km", "Sesion": "2 km E + 4×400 m en I (3:46–3:56/km), rec. 400 m muy suave + completar 5 km.", "Objetivo": "Chispa", "Notas": ""}, {"Fecha": "2026-12-03", "Semana": 17, "Dia": "Jueves", "Fase": "Carrera", "Tipo": "Rodaje suave", "Km": 6.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "6 km en E (5:01–5:26/km) + 4×20'' rectas relajadas.", "Objetivo": "Soltar", "Notas": ""}, {"Fecha": "2026-12-04", "Semana": 17, "Dia": "Viernes", "Fase": "Carrera", "Tipo": "Descanso", "Km": 0.0, "Zona": "—", "Ritmo": "—", "Sesion": "Descanso completo. Movilidad suave opcional si te apetece.", "Objetivo": "Frescura", "Notas": ""}, {"Fecha": "2026-12-05", "Semana": 17, "Dia": "Sábado", "Fase": "Carrera", "Tipo": "Shake-out", "Km": 4.0, "Zona": "E", "Ritmo": "5:01–5:26/km", "Sesion": "4 km muy suaves en E (5:01–5:26/km) + 4×15'' progresivos.", "Objetivo": "Activar", "Notas": ""}, {"Fecha": "2026-12-06", "Semana": 17, "Dia": "Domingo", "Fase": "Carrera", "Tipo": "MARATÓN VALENCIA", "Km": 42.195, "Zona": "MP", "Ritmo": "4:36/km", "Sesion": "Objetivo 3:14:00; ritmo medio ≈4:36/km. Salida controlada, estabiliza pronto el ritmo y no intentes ganar tiempo en los primeros 10 km.", "Objetivo": "Competición", "Notas": ""}];
+const WEEKLY = [{"Semana": 1, "Desde": "11/08", "Hasta": "16/08", "Fase": "Adaptación", "KmPlan": 45.0, "SesionesClave": "Rodaje suave + inicio serie", "TiradaDomingo": "14 km – Tirada larga", "ObjetivoSemana": "Entrar en rutina sin buscar ritmos. Prioridad: terminar fresco."}, {"Semana": 2, "Desde": "17/08", "Hasta": "23/08", "Fase": "Adaptación", "KmPlan": 54.0, "SesionesClave": "Fartlek corto + Rodaje progresivo", "TiradaDomingo": "16 km – Tirada larga", "ObjetivoSemana": "Primer estímulo de calidad muy controlado."}, {"Semana": 3, "Desde": "24/08", "Hasta": "30/08", "Fase": "Base", "KmPlan": 65.0, "SesionesClave": "Series 800 m + Tempo controlado", "TiradaDomingo": "18 km – Tirada larga", "ObjetivoSemana": "Introducir intervalos sin llevarlos al límite."}, {"Semana": 4, "Desde": "31/08", "Hasta": "06/09", "Fase": "Base", "KmPlan": 70.0, "SesionesClave": "Umbral 3×2 km + Rodaje medio", "TiradaDomingo": "20 km – Tirada larga", "ObjetivoSemana": "Primera sesión de umbral estructurada."}, {"Semana": 5, "Desde": "07/09", "Hasta": "13/09", "Fase": "Descarga", "KmPlan": 58.0, "SesionesClave": "Cuestas + Rodaje progresivo", "TiradaDomingo": "20 km – Tirada larga", "ObjetivoSemana": "Bajar carga para consolidar."}, {"Semana": 6, "Desde": "14/09", "Hasta": "20/09", "Fase": "Construcción", "KmPlan": 64.0, "SesionesClave": "Series 1 km + Ritmo maratón", "TiradaDomingo": "22 km – Tirada larga", "ObjetivoSemana": "Empieza el trabajo específico de ritmo maratón."}, {"Semana": 7, "Desde": "21/09", "Hasta": "27/09", "Fase": "Construcción", "KmPlan": 78.0, "SesionesClave": "Umbral 2×3 km + Rodaje medio", "TiradaDomingo": "24 km – Tirada larga", "ObjetivoSemana": "Aumenta duración del umbral y de la tirada."}, {"Semana": 8, "Desde": "28/09", "Hasta": "04/10", "Fase": "Construcción", "KmPlan": 84.0, "SesionesClave": "Series 1 km + Ritmo maratón", "TiradaDomingo": "26 km – Tirada larga", "ObjetivoSemana": "Segundo contacto relevante con ritmo maratón."}, {"Semana": 9, "Desde": "05/10", "Hasta": "11/10", "Fase": "Descarga", "KmPlan": 68.0, "SesionesClave": "Fartlek 5×4' + Rodaje medio", "TiradaDomingo": "26 km – Tirada larga", "ObjetivoSemana": "Semana de absorción."}, {"Semana": 10, "Desde": "12/10", "Hasta": "18/10", "Fase": "Específica", "KmPlan": 87.0, "SesionesClave": "Umbral 3×3 km + Rodaje medio", "TiradaDomingo": "28 km – Tirada específica", "ObjetivoSemana": "Umbral + tirada con final cercano a MP."}, {"Semana": 11, "Desde": "19/10", "Hasta": "25/10", "Fase": "Específica", "KmPlan": 90.0, "SesionesClave": "Series 1600 m + Ritmo maratón", "TiradaDomingo": "30 km – Tirada larga", "ObjetivoSemana": "Carga alta con bloque largo de MP entre semana."}, {"Semana": 12, "Desde": "26/10", "Hasta": "01/11", "Fase": "Específica", "KmPlan": 94.0, "SesionesClave": "Umbral 4×2 km + Rodaje medio", "TiradaDomingo": "32 km – Tirada larga", "ObjetivoSemana": "Mayor volumen semanal, tirada larga sin MP."}, {"Semana": 13, "Desde": "02/11", "Hasta": "08/11", "Fase": "Descarga", "KmPlan": 76.0, "SesionesClave": "Series 800 m + Ritmo maratón", "TiradaDomingo": "30 km – Tirada específica", "ObjetivoSemana": "Reducir antes del bloque más específico."}, {"Semana": 14, "Desde": "09/11", "Hasta": "15/11", "Fase": "Pico específico", "KmPlan": 94.0, "SesionesClave": "Series 1 km + Ritmo maratón", "TiradaDomingo": "32 km – Tirada específica clave", "ObjetivoSemana": "Semana clave; ensayo principal el domingo."}, {"Semana": 15, "Desde": "16/11", "Hasta": "22/11", "Fase": "Pre-taper", "KmPlan": 80.0, "SesionesClave": "Umbral corto + Ritmo maratón", "TiradaDomingo": "26 km – Tirada específica", "ObjetivoSemana": "Último estímulo específico importante."}, {"Semana": 16, "Desde": "23/11", "Hasta": "29/11", "Fase": "Taper", "KmPlan": 56.0, "SesionesClave": "Series 1 km + Ritmo maratón", "TiradaDomingo": "18 km – Tirada larga corta", "ObjetivoSemana": "Reducir carga manteniendo intensidad."}, {"Semana": 17, "Desde": "30/11", "Hasta": "06/12", "Fase": "Carrera", "KmPlan": 65.195, "SesionesClave": "Activación MP + Activación corta + Shake-out", "TiradaDomingo": "42.195 km – MARATÓN VALENCIA", "ObjetivoSemana": "Bajar fatiga y mantener coordinación."}];
+
+const PHASE_COLORS = {
+  "Adaptación":"var(--c-adapt)",
+  "Base":"var(--c-base)",
+  "Descarga":"var(--c-descarga)",
+  "Construcción":"var(--c-construccion)",
+  "Específica":"var(--c-especifica)",
+  "Pico específico":"var(--c-pico)",
+  "Pre-taper":"var(--c-pretaper)",
+  "Taper":"var(--c-taper)",
+  "Carrera":"var(--c-carrera)"
+};
+// resolved hex (svg can't read css vars via getPropertyValue easily cross-context, so map directly)
+const PHASE_HEX = {
+  "Adaptación":"#6b9bd1",
+  "Base":"#5fb88f",
+  "Descarga":"#7c8797",
+  "Construcción":"#e0a83d",
+  "Específica":"#db6b3d",
+  "Pico específico":"#c2453b",
+  "Pre-taper":"#b5739e",
+  "Taper":"#8172c9",
+  "Carrera":"#e8b23d"
+};
+
+const ZONES = [
+  {tag:"REC", use:"Recuperación", fast:"5:25", slow:"5:45", fastSec:325, slowSec:345, color:"#4a7fb0"},
+  {tag:"E", use:"Rodaje fácil", fast:"5:00", slow:"5:25", fastSec:300, slowSec:325, color:"#5aa0b0"},
+  {tag:"LR", use:"Tirada larga", fast:"4:50", slow:"5:00", fastSec:290, slowSec:300, color:"#5fb88f"},
+  {tag:"S", use:"Steady / medio", fast:"4:45", slow:"4:50", fastSec:285, slowSec:290, color:"#8fbf5e"},
+  {tag:"MP", use:"Ritmo maratón (objetivo)", fast:"4:28", slow:"4:41", fastSec:268, slowSec:281, color:"#e8b23d", star:true},
+  {tag:"T", use:"Umbral / tempo", fast:"4:05", slow:"4:17", fastSec:245, slowSec:257, color:"#e0834d"},
+  {tag:"I", use:"Intervalos", fast:"3:45", slow:"3:55", fastSec:225, slowSec:235, color:"#d9603d"},
+  {tag:"R", use:"Repeticiones cortas", fast:"3:40", slow:"3:45", fastSec:220, slowSec:225, color:"#c2453b"}
+];
+
+// ---------- Countdown & track (se recalcula con la fecha real del dispositivo) ----------
+const today = new Date(); today.setHours(0,0,0,0);
+const raceDay = new Date("2026-12-06T00:00:00");
+const startDay = new Date("2026-08-10T00:00:00");
+const totalDays = Math.round((raceDay - startDay)/86400000);
+const daysLeftRaw = Math.round((raceDay - today)/86400000);
+const daysLeft = Math.max(0, daysLeftRaw);
+const weeksLeft = Math.max(0, Math.floor(daysLeft/7));
+const daysElapsed = Math.round((today - startDay)/86400000);
+const pct = Math.max(0, Math.min(100, (daysElapsed/totalDays)*100));
+
+let statusMsg;
+if(daysLeftRaw > 0){
+  statusMsg = pct.toFixed(0)+"% del plan recorrido (hoy)";
+} else if(daysLeftRaw === 0){
+  statusMsg = "¡Es hoy! 🏁";
+} else {
+  statusMsg = "Carrera completada";
+}
+
+document.getElementById('countdownRow').innerHTML = `
+  <div class="cbox"><div class="n">${daysLeft}</div><div class="l">días para la carrera</div></div>
+  <div class="cbox"><div class="n">${weeksLeft}</div><div class="l">semanas restantes</div></div>
+  <div class="cbox"><div class="n">17</div><div class="l">semanas totales</div></div>
+  <div class="cbox"><div class="n">42.195</div><div class="l">km de carrera</div></div>
+`;
+document.getElementById('trackFill').style.width = pct+"%";
+document.getElementById('trackRunner').style.left = pct+"%";
+document.getElementById('trackPct').textContent = statusMsg;
+
+// ---------- KPIs ----------
+const totalKm = WEEKLY.reduce((a,w)=>a+Number(w.KmPlan||0),0);
+const peakKm = Math.max(...WEEKLY.map(w=>Number(w.KmPlan||0)));
+const longestRun = Math.max(...DAILY.map(d=>Number(d.Km||0)));
+const numSesiones = DAILY.filter(d=>Number(d.Km||0)>0).length;
+
+document.getElementById('kpiGrid').innerHTML = `
+  <div class="kpi"><div class="k-lbl">Km totales del plan</div><div class="k-val">${totalKm.toFixed(0)}</div><div class="k-sub">a lo largo de 17 semanas</div></div>
+  <div class="kpi"><div class="k-lbl">Semana pico</div><div class="k-val">${peakKm.toFixed(0)} km</div><div class="k-sub">semanas 12 y 14</div></div>
+  <div class="kpi"><div class="k-lbl">Tirada más larga</div><div class="k-val">${longestRun.toFixed(0)} km</div><div class="k-sub">domingo semana 12</div></div>
+  <div class="kpi gold"><div class="k-lbl">Ritmo objetivo</div><div class="k-val mono">4:36</div><div class="k-sub">min/km · 3:14:00 total</div></div>
+`;
+
+// ---------- Weekly chart (SVG) ----------
+(function(){
+  const svg = document.getElementById('chartSvg');
+  const W = 1080, H = 340;
+  const padL = 40, padR = 10, padT = 10, padB = 40;
+  const plotW = W - padL - padR, plotH = H - padT - padB;
+  const n = WEEKLY.length;
+  const gap = 8;
+  const barW = (plotW - gap*(n-1))/n;
+  const maxKm = Math.max(...WEEKLY.map(w=>Number(w.KmPlan)));
+
+  let svgHtml = "";
+  // gridlines
+  [0,25,50,75,100].forEach(v=>{
+    if(v>maxKm+10) return;
+    const y = padT + plotH - (v/maxKm)*plotH;
+    svgHtml += `<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="#26303c" stroke-width="1"/>`;
+    svgHtml += `<text x="${padL-8}" y="${y+4}" text-anchor="end" font-size="11" fill="#5d6774" font-family="IBM Plex Mono">${v}</text>`;
+  });
+
+  WEEKLY.forEach((w,i)=>{
+    const km = Number(w.KmPlan);
+    const x = padL + i*(barW+gap);
+    const h = (km/maxKm)*plotH;
+    const y = padT + plotH - h;
+    const color = PHASE_HEX[w.Fase] || "#999";
+    svgHtml += `<rect class="bar" data-i="${i}" x="${x}" y="${y}" width="${barW}" height="${h}" rx="4" fill="${color}"></rect>`;
+    svgHtml += `<text x="${x+barW/2}" y="${padT+plotH+16}" text-anchor="middle" font-size="10.5" fill="#8b96a5" font-family="IBM Plex Mono">${w.Semana}</text>`;
+  });
+
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.innerHTML = svgHtml;
+
+  const tip = document.getElementById('chartTip');
+  const container = document.querySelector('.chart-container');
+  svg.querySelectorAll('.bar').forEach(bar=>{
+    bar.addEventListener('mousemove', (e)=>{
+      const w = WEEKLY[bar.dataset.i];
+      tip.innerHTML = `<div style="color:#e9edf2; font-weight:600; margin-bottom:4px;">Semana ${w.Semana} · ${w.Fase}</div>
+        <div>${w.Desde} → ${w.Hasta}</div>
+        <div style="margin-top:4px;">Km: <b>${w.KmPlan}</b></div>
+        <div>Tirada: ${w.TiradaDomingo}</div>`;
+      const rect = container.getBoundingClientRect();
+      tip.style.left = (e.clientX - rect.left + 14) + "px";
+      tip.style.top = (e.clientY - rect.top - 10) + "px";
+      tip.style.opacity = 1;
+    });
+    bar.addEventListener('mouseleave', ()=>{ tip.style.opacity=0; });
+  });
+
+  // legend
+  document.getElementById('chartLegend').innerHTML = Object.entries(PHASE_HEX).map(([k,v])=>
+    `<div class="li"><span class="sw" style="background:${v}"></span>${k}</div>`).join("");
+})();
+
+// ---------- Zones panel ----------
+(function(){
+  const minSec = Math.min(...ZONES.map(z=>z.fastSec)) - 8;
+  const maxSec = Math.max(...ZONES.map(z=>z.slowSec)) + 8;
+  const span = maxSec - minSec;
+  const html = ZONES.map(z=>{
+    const leftPct = ((z.fastSec - minSec)/span)*100;
+    const widthPct = ((z.slowSec - z.fastSec)/span)*100;
+    return `<div class="zone-row">
+      <div class="zone-tag" style="background:${z.color}">${z.tag}</div>
+      <div class="zone-use">${z.use}${z.star?' <span class="mp-star">★ objetivo</span>':''}<small>${z.tag==='MP'?'Zona de carrera':''}</small></div>
+      <div class="zone-scale"><div class="zone-range" style="left:${leftPct}%; width:${widthPct}%; background:${z.color}"></div></div>
+      <div class="zone-pace"><span class="fast">${z.fast}</span> – ${z.slow} /km</div>
+    </div>`;
+  }).join("");
+  document.getElementById('zonesPanel').innerHTML = html;
+})();
+
+// ---------- Weekly table ----------
+(function(){
+  const tbody = document.querySelector('#weekTable tbody');
+  tbody.innerHTML = WEEKLY.map(w=>`
+    <tr>
+      <td class="mono">S${w.Semana}</td>
+      <td class="mono">${w.Desde}–${w.Hasta}</td>
+      <td><span class="phase-chip" style="background:${PHASE_HEX[w.Fase]}">${w.Fase}</span></td>
+      <td class="km-strong">${w.KmPlan}</td>
+      <td>${w.SesionesClave}</td>
+      <td>${w.TiradaDomingo}</td>
+      <td class="sesion-cell">${w.ObjetivoSemana}</td>
+    </tr>
+  `).join("");
+})();
+
+// ---------- Daily table + filters ----------
+const zoneColor = {};
+ZONES.forEach(z=>zoneColor[z.tag]=z.color);
+
+function renderDaily(){
+  const fw = document.getElementById('fWeek').value;
+  const fp = document.getElementById('fPhase').value;
+  const fz = document.getElementById('fZone').value;
+  const fs = document.getElementById('fSearch').value.toLowerCase();
+
+  const rows = DAILY.filter(d=>{
+    if(fw && String(d.Semana)!==fw) return false;
+    if(fp && d.Fase!==fp) return false;
+    if(fz && d.Zona!==fz) return false;
+    if(fs){
+      const hay = (d.Tipo+" "+d.Sesion+" "+d.Objetivo+" "+d.Fase).toLowerCase();
+      if(!hay.includes(fs)) return false;
+    }
+    return true;
+  });
+
+  const tbody = document.querySelector('#dailyTable tbody');
+  tbody.innerHTML = rows.map(d=>{
+    const isRace = d.Tipo && d.Tipo.includes("MARATÓN");
+    const isRest = d.Tipo === "Descanso";
+    const rowClass = isRace ? "race-row" : (isRest ? "rest-row" : "");
+    const zonePill = d.Zona && d.Zona!=='—' ? `<span class="zone-pill" style="background:${zoneColor[d.Zona]||'#5d6774'}">${d.Zona}</span>` : '<span style="color:var(--muted-2)">—</span>';
+    return `<tr class="${rowClass}">
+      <td class="mono">${d.Fecha}</td>
+      <td class="mono">S${d.Semana}</td>
+      <td class="day-badge">${d.Dia}</td>
+      <td><span class="phase-chip" style="background:${PHASE_HEX[d.Fase]||'#5d6774'}">${d.Fase}</span></td>
+      <td class="tipo-cell">${d.Tipo}</td>
+      <td class="km-strong">${d.Km || '—'}</td>
+      <td>${zonePill}</td>
+      <td class="mono" style="font-size:12px;">${d.Ritmo}</td>
+      <td class="sesion-cell">${d.Sesion}</td>
+      <td style="color:var(--muted); font-size:12.5px;">${d.Objetivo}</td>
+    </tr>`;
+  }).join("");
+
+  document.getElementById('dailyCount').textContent = `Mostrando ${rows.length} de ${DAILY.length} sesiones`;
+}
+
+(function initFilters(){
+  const weeks = [...new Set(DAILY.map(d=>d.Semana))].sort((a,b)=>a-b);
+  const phases = [...new Set(DAILY.map(d=>d.Fase))];
+  const zones = [...new Set(DAILY.map(d=>d.Zona))].filter(z=>z && z!=='—');
+
+  document.getElementById('fWeek').innerHTML += weeks.map(w=>`<option value="${w}">Semana ${w}</option>`).join("");
+  document.getElementById('fPhase').innerHTML += phases.map(p=>`<option value="${p}">${p}</option>`).join("");
+  document.getElementById('fZone').innerHTML += zones.map(z=>`<option value="${z}">${z}</option>`).join("");
+
+  document.getElementById('fWeek').addEventListener('change', renderDaily);
+  document.getElementById('fPhase').addEventListener('change', renderDaily);
+  document.getElementById('fZone').addEventListener('change', renderDaily);
+  document.getElementById('fSearch').addEventListener('input', renderDaily);
+
+  renderDaily();
+})();
+
+// ---------- How to use ----------
+const HOWTO = [
+  {t:"Objetivo", d:"3:14:00 (≈4:36/km). El entrenamiento no busca demostrar forma cada día, sino llegar <b>fresco y específico</b> al 6 de diciembre."},
+  {t:"Punto de partida asumido", d:"El plan presupone que hoy puedes tolerar ~40–45 km/semana y 5 días de carrera sin molestias relevantes."},
+  {t:"Si tu base actual es menor", d:"Durante las primeras 3 semanas reduce un <b>20–25%</b> los km fáciles y de tirada larga. Mantén la estructura, no la carga completa."},
+  {t:"Estructura semanal", d:"Lunes recuperación/rodaje · martes descanso · miércoles calidad (series, umbral, fartlek o cuestas) · jueves rodaje fácil · viernes steady/MP · sábado fácil o descanso · domingo tirada larga."},
+  {t:"Calor agosto/septiembre", d:"Con calor alto, corre <b>por esfuerzo</b>. Los ritmos son referencias, no obligaciones."},
+  {t:"Fuerza recomendada", d:"2 sesiones/semana de 20–30 min hasta mediados de noviembre: gemelo-sóleo, glúteo, isquio, cuádriceps y core."},
+  {t:"Nutrición", d:"Desde 22–24 km practica exactamente el desayuno, hidratación y geles que quieras usar en carrera."},
+  {t:"Dolor", d:"Si un dolor altera la zancada, aumenta al correr o persiste varios días, sustituye la sesión y valora revisión profesional."},
+  {t:"Validación del 3:14", d:"Si completas el ensayo clave de 32 km con los bloques a MP de forma controlada y recuperas bien, el objetivo será coherente."},
+];
+document.getElementById('howtoGrid').innerHTML = HOWTO.map(h=>`<div class="howto-card"><h4>${h.t}</h4><p>${h.d}</p></div>`).join("");
+</script>
+</body>
+</html>
