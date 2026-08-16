@@ -8,34 +8,35 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#10141a;
-  --panel:#171d25;
-  --panel-2:#1d2530;
-  --border:#26303c;
-  --text:#e9edf2;
-  --muted:#8b96a5;
-  --muted-2:#5d6774;
-  --teal:#35d0c0;
-  --teal-dim:rgba(53,208,192,.14);
-  --gold:#e8b23d;
-  --gold-dim:rgba(232,178,61,.14);
+  --bg:#f6f7f9;
+  --panel:#ffffff;
+  --panel-2:#eef1f4;
+  --border:#e3e7ec;
+  --text:#1c2530;
+  --muted:#6b7684;
+  --muted-2:#98a1ac;
+  --teal:#0f9c92;
+  --teal-dim:rgba(15,156,146,.10);
+  --gold:#c9871f;
+  --gold-dim:rgba(201,135,31,.12);
 
-  --c-adapt:#6b9bd1;
-  --c-base:#5fb88f;
-  --c-descarga:#7c8797;
-  --c-construccion:#e0a83d;
-  --c-especifica:#db6b3d;
-  --c-pico:#c2453b;
-  --c-pretaper:#b5739e;
-  --c-taper:#8172c9;
-  --c-carrera:#e8b23d;
+  --c-adapt:#4d7fb8;
+  --c-base:#3f9c74;
+  --c-descarga:#8b95a3;
+  --c-construccion:#c9871f;
+  --c-especifica:#c85a2c;
+  --c-pico:#b23a34;
+  --c-pretaper:#a15b8a;
+  --c-taper:#6a5cb0;
+  --c-carrera:#c9871f;
+  --shadow:0 1px 3px rgba(20,30,45,.05);
 }
 *{box-sizing:border-box; margin:0; padding:0;}
 html{scroll-behavior:smooth;}
 body{
   background:
-    radial-gradient(1200px 600px at 15% -10%, rgba(53,208,192,.08), transparent 60%),
-    radial-gradient(900px 500px at 100% 0%, rgba(232,178,61,.06), transparent 55%),
+    radial-gradient(1200px 600px at 15% -10%, rgba(15,156,146,.05), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(201,135,31,.04), transparent 55%),
     var(--bg);
   color:var(--text);
   font-family:'Inter',system-ui,sans-serif;
@@ -72,7 +73,7 @@ h1{
   font-size:clamp(38px,6vw,64px);
   line-height:.95;
   letter-spacing:.01em;
-  color:#fff;
+  color:#10151d;
 }
 h1 span{color:var(--gold);}
 .hero-sub{color:var(--muted); font-size:15px; margin-top:10px; max-width:520px;}
@@ -83,6 +84,7 @@ h1 span{color:var(--gold);}
   border-radius:14px;
   padding:16px 22px;
   min-width:200px;
+  box-shadow:var(--shadow);
 }
 .hero-target .lbl{font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted-2); margin-bottom:4px;}
 .hero-target .val{font-family:'Bebas Neue'; font-size:44px; color:var(--gold); line-height:1;}
@@ -93,7 +95,7 @@ h1 span{color:var(--gold);}
 }
 .cbox{
   background:var(--panel); border:1px solid var(--border); border-radius:12px;
-  padding:10px 16px; min-width:78px; text-align:center;
+  padding:10px 16px; min-width:78px; text-align:center; box-shadow:var(--shadow);
 }
 .cbox .n{font-family:'Bebas Neue'; font-size:26px; color:var(--text);}
 .cbox .l{font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted-2); margin-top:2px;}
@@ -120,26 +122,26 @@ h1 span{color:var(--gold);}
 @media(max-width:800px){.kpi-grid{grid-template-columns:repeat(2,1fr);}}
 .kpi{
   background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:16px 18px;
-  position:relative; overflow:hidden;
+  position:relative; overflow:hidden; box-shadow:var(--shadow);
 }
 .kpi::before{
   content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--teal);
 }
 .kpi.gold::before{background:var(--gold);}
 .kpi .k-lbl{font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted-2);}
-.kpi .k-val{font-family:'Bebas Neue'; font-size:32px; color:#fff; margin-top:4px;}
+.kpi .k-val{font-family:'Bebas Neue'; font-size:32px; color:#10151d; margin-top:4px;}
 .kpi .k-sub{font-size:12px; color:var(--muted); margin-top:2px;}
 
 /* ---------- section titles ---------- */
 section{padding-top:44px;}
 .sec-head{display:flex; align-items:baseline; justify-content:space-between; gap:14px; margin-bottom:16px; flex-wrap:wrap;}
-.sec-title{font-family:'Bebas Neue'; font-size:26px; letter-spacing:.02em; color:#fff; display:flex; align-items:center; gap:10px;}
+.sec-title{font-family:'Bebas Neue'; font-size:26px; letter-spacing:.02em; color:#10151d; display:flex; align-items:center; gap:10px;}
 .sec-title .num{color:var(--teal); font-family:'IBM Plex Mono',monospace; font-size:13px; border:1px solid var(--border); border-radius:6px; padding:2px 7px;}
 .sec-note{font-size:12.5px; color:var(--muted);}
 
 /* ---------- weekly chart ---------- */
 .chart-panel{
-  background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:20px 18px 8px;
+  background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:20px 18px 8px; box-shadow:var(--shadow);
 }
 .legend{display:flex; flex-wrap:wrap; gap:10px 16px; margin-bottom:14px; font-size:11.5px; color:var(--muted);}
 .legend .li{display:flex; align-items:center; gap:6px;}
@@ -148,16 +150,16 @@ section{padding-top:44px;}
 .bar{transition:opacity .15s;}
 .bar:hover{opacity:.75; cursor:pointer;}
 .chart-tip{
-  position:absolute; pointer-events:none; background:#0c1014; border:1px solid var(--border);
-  border-radius:10px; padding:10px 12px; font-size:12px; color:var(--text); opacity:0; transition:opacity .1s;
-  box-shadow:0 10px 30px rgba(0,0,0,.5); z-index:50; min-width:170px;
+  position:absolute; pointer-events:none; background:#1c2530; border:1px solid #1c2530;
+  border-radius:10px; padding:10px 12px; font-size:12px; color:#e9edf2; opacity:0; transition:opacity .1s;
+  box-shadow:0 10px 26px rgba(20,30,45,.22); z-index:50; min-width:170px;
 }
 .chart-tip b{color:var(--gold); font-family:'IBM Plex Mono',monospace;}
 .chart-container{position:relative;}
 
 /* ---------- pace zones ---------- */
 .zones-panel{
-  background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:22px 20px;
+  background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:22px 20px; box-shadow:var(--shadow);
 }
 .zone-row{
   display:grid; grid-template-columns:64px 150px 1fr 128px; align-items:center; gap:14px;
@@ -181,7 +183,7 @@ section{padding-top:44px;}
 .mp-star{color:var(--gold); font-size:11px; margin-left:4px;}
 
 /* ---------- weekly table ---------- */
-.week-table-wrap{overflow-x:auto; border:1px solid var(--border); border-radius:16px; background:var(--panel);}
+.week-table-wrap{overflow-x:auto; border:1px solid var(--border); border-radius:16px; background:var(--panel); box-shadow:var(--shadow);}
 table{width:100%; border-collapse:collapse; font-size:13px;}
 thead th{
   text-align:left; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-2);
@@ -189,7 +191,7 @@ thead th{
 }
 tbody td{padding:11px 14px; border-bottom:1px solid var(--border); vertical-align:top; color:var(--text);}
 tbody tr:last-child td{border-bottom:none;}
-tbody tr:hover{background:rgba(255,255,255,.02);}
+tbody tr:hover{background:rgba(20,30,45,.025);}
 .phase-chip{
   display:inline-block; font-size:11px; padding:3px 9px; border-radius:20px; font-weight:600; color:#0c1014; white-space:nowrap;
 }
@@ -218,7 +220,7 @@ tbody tr:hover{background:rgba(255,255,255,.02);}
 /* ---------- how to use ---------- */
 .howto-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
 @media(max-width:800px){.howto-grid{grid-template-columns:1fr;}}
-.howto-card{background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:16px 18px;}
+.howto-card{background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:16px 18px; box-shadow:var(--shadow);}
 .howto-card h4{font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--teal); margin-bottom:6px;}
 .howto-card p{font-size:13.5px; color:var(--text); line-height:1.5;}
 .howto-card p b{color:var(--gold);}
@@ -441,7 +443,7 @@ document.getElementById('kpiGrid').innerHTML = `
   [0,25,50,75,100].forEach(v=>{
     if(v>maxKm+10) return;
     const y = padT + plotH - (v/maxKm)*plotH;
-    svgHtml += `<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="#26303c" stroke-width="1"/>`;
+    svgHtml += `<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="#e3e7ec" stroke-width="1"/>`;
     svgHtml += `<text x="${padL-8}" y="${y+4}" text-anchor="end" font-size="11" fill="#5d6774" font-family="IBM Plex Mono">${v}</text>`;
   });
 
@@ -452,7 +454,7 @@ document.getElementById('kpiGrid').innerHTML = `
     const y = padT + plotH - h;
     const color = PHASE_HEX[w.Fase] || "#999";
     svgHtml += `<rect class="bar" data-i="${i}" x="${x}" y="${y}" width="${barW}" height="${h}" rx="4" fill="${color}"></rect>`;
-    svgHtml += `<text x="${x+barW/2}" y="${padT+plotH+16}" text-anchor="middle" font-size="10.5" fill="#8b96a5" font-family="IBM Plex Mono">${w.Semana}</text>`;
+    svgHtml += `<text x="${x+barW/2}" y="${padT+plotH+16}" text-anchor="middle" font-size="10.5" fill="#6b7684" font-family="IBM Plex Mono">${w.Semana}</text>`;
   });
 
   svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
