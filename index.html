@@ -102,6 +102,19 @@ h1 span{color:var(--gold);}
 
 /* ---------- progress track (signature element) ---------- */
 .track-wrap{margin-top:26px;}
+.motivation{
+  margin-top:16px;
+  font-style:italic;
+  font-weight:700;
+  font-size:20px;
+  line-height:1.4;
+  color:var(--text);
+  border-left:3px solid var(--teal);
+  padding-left:14px;
+  max-width:720px;
+}
+.motivation::before{content:'“'; }
+.motivation::after{content:'”'; }
 .track-lbl-row{display:flex; justify-content:space-between; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted-2); margin-bottom:6px;}
 .track{
   position:relative; height:10px; border-radius:6px; background:var(--panel-2); border:1px solid var(--border); overflow:visible;
@@ -258,7 +271,7 @@ footer a{color:var(--teal); text-decoration:none;}
 
     <div class="track-wrap">
       <div class="track-lbl-row">
-        <span>10 AGO · SEMANA 1</span>
+        <span>10 AGO · INICIO</span>
         <span id="trackPct">—</span>
         <span>6 DIC · CARRERA</span>
       </div>
@@ -266,6 +279,7 @@ footer a{color:var(--teal); text-decoration:none;}
         <div class="track-fill" id="trackFill"></div>
         <div class="track-runner" id="trackRunner">🏃</div>
       </div>
+      <p class="motivation" id="motivationLine"></p>
     </div>
   </header>
 
@@ -273,46 +287,9 @@ footer a{color:var(--teal); text-decoration:none;}
     <div class="kpi-grid" id="kpiGrid"></div>
   </section>
 
-  <section id="weekly-chart">
-    <div class="sec-head">
-      <div class="sec-title"><span class="num">01</span> Kilómetros por semana</div>
-      <div class="sec-note">Pasa el ratón sobre cada barra para ver el detalle</div>
-    </div>
-    <div class="chart-panel">
-      <div class="legend" id="chartLegend"></div>
-      <div class="chart-container">
-        <svg id="chartSvg" viewBox="0 0 1080 340"></svg>
-        <div class="chart-tip" id="chartTip"></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="zones">
-    <div class="sec-head">
-      <div class="sec-title"><span class="num">02</span> Ritmos de referencia</div>
-      <div class="sec-note">Objetivo maratón ≈ 4:36/km · zona MP 4:28–4:41/km <span class="mp-star">★</span></div>
-    </div>
-    <div class="zones-panel" id="zonesPanel"></div>
-  </section>
-
-  <section id="weekly-table">
-    <div class="sec-head">
-      <div class="sec-title"><span class="num">03</span> Resumen por semana</div>
-      <div class="sec-note">17 semanas · fase, km y foco de cada bloque</div>
-    </div>
-    <div class="week-table-wrap">
-      <table id="weekTable">
-        <thead><tr>
-          <th>Sem.</th><th>Fechas</th><th>Fase</th><th>Km</th><th>Sesiones clave</th><th>Tirada domingo</th><th>Objetivo de la semana</th>
-        </tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </section>
-
   <section id="daily">
     <div class="sec-head">
-      <div class="sec-title"><span class="num">04</span> Plan diario</div>
+      <div class="sec-title"><span class="num">01</span> Plan diario</div>
       <div class="sec-note">118 sesiones · filtra por semana, fase o tipo de zona</div>
     </div>
     <div class="filters">
@@ -330,6 +307,43 @@ footer a{color:var(--teal); text-decoration:none;}
       </table>
     </div>
     <div class="count-note" id="dailyCount"></div>
+  </section>
+
+  <section id="weekly-chart">
+    <div class="sec-head">
+      <div class="sec-title"><span class="num">02</span> Kilómetros por semana</div>
+      <div class="sec-note">Pasa el ratón sobre cada barra para ver el detalle</div>
+    </div>
+    <div class="chart-panel">
+      <div class="legend" id="chartLegend"></div>
+      <div class="chart-container">
+        <svg id="chartSvg" viewBox="0 0 1080 340"></svg>
+        <div class="chart-tip" id="chartTip"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="weekly-table">
+    <div class="sec-head">
+      <div class="sec-title"><span class="num">03</span> Resumen por semana</div>
+      <div class="sec-note">17 semanas · fase, km y foco de cada bloque</div>
+    </div>
+    <div class="week-table-wrap">
+      <table id="weekTable">
+        <thead><tr>
+          <th>Sem.</th><th>Fechas</th><th>Fase</th><th>Km</th><th>Sesiones clave</th><th>Tirada domingo</th><th>Objetivo de la semana</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="zones">
+    <div class="sec-head">
+      <div class="sec-title"><span class="num">04</span> Ritmos de referencia</div>
+      <div class="sec-note">Objetivo maratón ≈ 4:36/km · zona MP 4:28–4:41/km <span class="mp-star">★</span></div>
+    </div>
+    <div class="zones-panel" id="zonesPanel"></div>
   </section>
 
   <section id="howto">
@@ -396,8 +410,10 @@ const daysElapsed = Math.round((today - startDay)/86400000);
 const pct = Math.max(0, Math.min(100, (daysElapsed/totalDays)*100));
 
 let statusMsg;
+const curWeekForStatus = (typeof getCurrentWeek === 'function') ? getCurrentWeek() : null;
+const weekLabel = curWeekForStatus !== null ? ` · Semana ${curWeekForStatus} de 17` : "";
 if(daysLeftRaw > 0){
-  statusMsg = pct.toFixed(0)+"% del plan recorrido (hoy)";
+  statusMsg = pct.toFixed(0)+"% del plan recorrido"+weekLabel;
 } else if(daysLeftRaw === 0){
   statusMsg = "¡Es hoy! 🏁";
 } else {
@@ -413,6 +429,38 @@ document.getElementById('countdownRow').innerHTML = `
 document.getElementById('trackFill').style.width = pct+"%";
 document.getElementById('trackRunner').style.left = pct+"%";
 document.getElementById('trackPct').textContent = statusMsg;
+
+// ---------- Frase motivacional (cambia cada semana natural) ----------
+const MOTIVATION = [
+  "La voluntad de ganar no significa nada sin la voluntad de prepararse.",
+  "Nunca te rindas.",
+  "Tú no dejas pasar la vida, tú la adelantas, tú eres runner.",
+  "El dolor es pasajero, la gloria es eterna.",
+  "Nadie dijo que fuera fácil.",
+  "No te detengas, siempre hay alguien por el que merece la pena seguir.",
+  "El cuerpo te pide que pares, pero la mente debe ser fuerte.",
+  "No se trata de ser mejor que otra persona, sino de ser mejor de lo que solías ser.",
+  "Corre cuando puedas, camina si tienes que hacerlo, pero nunca te rindas.",
+  "Tienes que entrenarte y creer en ti mismo; eso es lo importante.",
+  "La maratón no es cuestión de piernas. Es cuestión de corazón.",
+  "No corres para ganarle a otros. Corres para ganarle al sofá.",
+  "Los kilómetros difíciles de hoy serán tus kilómetros fáciles de mañana.",
+  "Si quieres ganar algo, corre 100 metros. Si quieres experimentar algo, corre un maratón.",
+  "Si fuera fácil, todo el mundo lo haría.",
+  "No cuentes los kilómetros. Haz que los kilómetros cuenten.",
+  "El éxito en la maratón se construye con la constancia de los días que no tenías ganas de correr.",
+  "Cada entrenamiento largo es un depósito de confianza para el día de la carrera.",
+  "Eres más fuerte de lo que tus piernas te dicen que eres.",
+  "No escuches a la voz que te dice que pares. Escucha a la voz que te recuerda por qué empezaste."
+];
+function getISOWeek(date){
+  const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+}
+const motivationSeed = getISOWeek(new Date()) + new Date().getFullYear();
+document.getElementById('motivationLine').textContent = MOTIVATION[motivationSeed % MOTIVATION.length];
 
 // ---------- KPIs ----------
 const totalKm = WEEKLY.reduce((a,w)=>a+Number(w.KmPlan||0),0);
@@ -560,14 +608,41 @@ function renderDaily(){
   document.getElementById('dailyCount').textContent = `Mostrando ${rows.length} de ${DAILY.length} sesiones`;
 }
 
+function getCurrentWeek(){
+  // Determina la semana del plan en la que cae la fecha de hoy (según el dispositivo)
+  const now = new Date(); now.setHours(0,0,0,0);
+  const ranges = {};
+  DAILY.forEach(d=>{
+    if(!d.Fecha) return;
+    const dt = new Date(d.Fecha+"T00:00:00");
+    const wk = d.Semana;
+    if(!ranges[wk]) ranges[wk] = {min:dt, max:dt};
+    if(dt < ranges[wk].min) ranges[wk].min = dt;
+    if(dt > ranges[wk].max) ranges[wk].max = dt;
+  });
+  const weeks = Object.keys(ranges).map(Number).sort((a,b)=>a-b);
+  if(!weeks.length) return null;
+  for(const wk of weeks){
+    if(now >= ranges[wk].min && now <= ranges[wk].max) return wk;
+  }
+  if(now < ranges[weeks[0]].min) return weeks[0];
+  return weeks[weeks.length-1];
+}
+
 (function initFilters(){
   const weeks = [...new Set(DAILY.map(d=>d.Semana))].sort((a,b)=>a-b);
   const phases = [...new Set(DAILY.map(d=>d.Fase))];
   const zones = [...new Set(DAILY.map(d=>d.Zona))].filter(z=>z && z!=='—');
+  const currentWeek = getCurrentWeek();
 
-  document.getElementById('fWeek').innerHTML += weeks.map(w=>`<option value="${w}">Semana ${w}</option>`).join("");
+  document.getElementById('fWeek').innerHTML += weeks.map(w=>
+    `<option value="${w}">Semana ${w}${w===currentWeek ? ' (actual)' : ''}</option>`).join("");
   document.getElementById('fPhase').innerHTML += phases.map(p=>`<option value="${p}">${p}</option>`).join("");
   document.getElementById('fZone').innerHTML += zones.map(z=>`<option value="${z}">${z}</option>`).join("");
+
+  if(currentWeek !== null){
+    document.getElementById('fWeek').value = String(currentWeek);
+  }
 
   document.getElementById('fWeek').addEventListener('change', renderDaily);
   document.getElementById('fPhase').addEventListener('change', renderDaily);
